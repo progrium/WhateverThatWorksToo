@@ -102,7 +102,7 @@ package game {
         }
 		
 		static public function syncnew(klass:Class, ... args):* {
-			Lobby.host.send('syncnew', getQualifiedClassName(klass), args);
+			if (Lobby.isHost) { Lobby.host.send('syncnew', getQualifiedClassName(klass), args); }
 			return Util.instantiateClass(getQualifiedClassName(klass), args);
 		} 
         
