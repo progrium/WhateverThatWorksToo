@@ -43,7 +43,7 @@ package net
 		}
 		
 		public function syncnew(k:String, args:Array):void {
-			if (!lobby.isHost) {
+			if (!Lobby.isHost) {
 				FlxG.state.add(Util.instantiateClass(k, args));
 			}
 		}

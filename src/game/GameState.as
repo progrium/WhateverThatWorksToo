@@ -49,14 +49,6 @@ package game {
             var xml:XML = new XML( new marioMap );
             var mapxml:XMLList = xml.*;
 
-            map = new FlxTilemap();
-            map.startingIndex = 1;
-            map.collideIndex = 1;
-            map.loadMap(
-                mapxml.(@name=="PlayingField").data,
-                marioTiles,
-                16, 16
-            );
             
             obs = new FlxTilemap();
             obs.startingIndex = 1;
@@ -72,17 +64,15 @@ package game {
             for( var x:int = 0; x<obs.widthInTiles; x++ ) {
                 for( var y:int = 0; y<obs.heightInTiles; y++ ) {
                     
-                    if( isObstructionTile(obs.getTile(x,y)) ) {
-                        obs.setTile(x, y, 2);
-                    } else {
+                    if( !isObstructionTile(obs.getTile(x,y)) ) {
+                        
                         if( isHittableBrick(obs.getTile(x,y)) ) {
                             var hb:HittableBlock = syncnew(HittableBlock, x*16, y*16, 16, 16);
 
-                            //hb.collideRight = false;
-                            //hb.collideLeft = false;
+                            
                             objectsGroup.add(hb);
                             
-                            map.setTile(x, y, 1);
+                            
                         }
 
                         obs.setTile(x, y, 1);
@@ -90,8 +80,6 @@ package game {
                 }
            }
             
-            mapGroup.add(map);
-            //map.visible = false;
             
 			playerGroup.add(syncnew(Player, 4*16,9*16,1) );
 			playerGroup.add(syncnew(Player, 11*16,9*16,3) );   
