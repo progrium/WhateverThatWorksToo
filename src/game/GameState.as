@@ -5,7 +5,6 @@ package game {
     
     import mx.events.PropertyChangeEvent;
     import mx.utils.*;
-	import mx.binding.utils.*;
     
     import net.*;
     
@@ -97,7 +96,7 @@ package game {
 			playerGroup.add(syncnew(Player, 4*16,9*16,1) );
 			playerGroup.add(syncnew(Player, 11*16,9*16,3) );   
 
-            baddieGroup.add( syncnew(Baddie, 13*16, 16*2) );
+            baddieGroup.add(syncnew(Baddie, 13*16, 16*2) );
 			
             super.create();
         }
